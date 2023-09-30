@@ -1,0 +1,26 @@
+EXPLICAÇÃO SEQUENCIAL DOS COMANDOS UTILIZADOS:
+1- inicializar o shell do MongoDB (Mongosh).
+2- criação do banco de dados.
+3- criação da coleção do banco de dados (onde é salvo os grupos de dados).
+4- inserção de 3 conjuntos de dados, todos contendo os mesmos campos mas valores diferentes e com tipos de valores diferentes.
+5- alteração do grupo de dados onde o nome do filme foi inicialmente inserido como "aaaa".
+6- mostrar todos os grupos de dados inseridos na coleção.
+
+
+
+COMANDOS UTILIZADOS:
+
+mongosh
+use filmesSalvos;
+db.createCollection("colecao");
+db.colecao.insertMany([
+	{nome: "Velozes e Furiosos 1", duracao: 1.46, genero: ["acao", "aventura"]},
+	{nome: "aaaa", duracao: 9.99, genero: ["a", "b", "c"]},
+	{nome: "dragon ball z: o renascimento da fusão", duracao: 0.50, genero: ["anime", "acao", "comédia"]}]);
+
+db.colecao.updateOne(
+	{nome: "aaaa"},
+	{$set: {nome: "vingadores: ultimato", duracao: 3.20, genero: ["acao", "aventura", "ficcao"]}}
+	);
+
+db.colecao.find();
